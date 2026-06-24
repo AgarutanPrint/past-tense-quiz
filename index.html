@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Master English Grammar: Past Tense Quiz</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:   #43a047;
+    --green-d: #2e7d32;
+    --blue:    #1e88e5;
+    --blue-d:  #1565c0;
+    --amber:   #fb8c00;
+    --amber-d: #e65100;
+    --purple:  #7b1fa2;
+    --purple-d:#4a148c;
+    --red-bg:  #fff0f0;
+    --red-br:  #ef9a9a;
+    --red-tx:  #c62828;
+    --red-hbg: #ef9a9a;
+    --red-hbr: #c62828;
+    --red-htx: #b71c1c;
+    --bg:      #f0f4ff;
+    --card:    #ffffff;
+    --text:    #1a1a2e;
+    --muted:   #6b7280;
+    --radius:  18px;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 12px 48px;
+  }
+
+  /* ── MENU ── */
+  #menu { width: 100%; max-width: 480px; }
+
+  .brand {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .menu-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 28px;
+    text-align: center;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .menu-sub {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .section-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.15s, filter 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .section-btn:active { transform: translateY(0); }
+
+  .section-btn .btn-label { font-size: 12px; font-weight: 600; opacity: 0.85; display: block; margin-bottom: 2px; }
+  .section-btn .btn-count { font-size: 12px; font-weight: 600; opacity: 0.75; }
+
+  .btn-ch1 { background: linear-gradient(135deg, #43a047, #1b5e20); }
+  .btn-ch2 { background: linear-gradient(135deg, #1e88e5, #0d47a1); }
+  .btn-mastery { background: linear-gradient(135deg, #7b1fa2, #4a148c); }
+
+  .menu-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* ── QUIZ SCREEN ── */
+  #quiz { width: 100%; max-width: 480px; display: none; }
+
+  .quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .quiz-section-label {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .progress-pill {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .progress-bar-wrap {
+    width: 100%;
+    height: 8px;
+    background: #e0e7ff;
+    border-radius: 99px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--accent, #43a047);
+    transition: width 0.4s ease;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    margin-bottom: 16px;
+  }
+
+  .question-num {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .question-text {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option-btn {
+    width: 100%;
+    padding: 13px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--accent, #43a047); background: #f0fff4; }
+  .option-btn.correct  { border-color: #43a047; background: #e8f5e9; color: #1b5e20; }
+  .option-btn.wrong    { border-color: #e53935; background: #ffebee; color: #b71c1c; }
+  .option-btn.revealed { border-color: #43a047; background: #e8f5e9; color: #1b5e20; }
+  .option-btn:disabled { cursor: default; }
+
+  .feedback-box {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    display: none;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.correct-fb  { background: #e8f5e9; color: #1b5e20; }
+  .feedback-box.wrong-fb    { background: #ffebee; color: #b71c1c; }
+
+  /* hint */
+  .hint-area { margin-top: 12px; }
+  .hint-btn {
+    background: none;
+    border: 2px dashed #fb8c00;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fb8c00;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .hint-btn:hover { background: #fff3e0; }
+  .hint-text {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: #fff8e1;
+    border-left: 4px solid #fb8c00;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e65100;
+    display: none;
+  }
+  .hint-text.show { display: block; }
+
+  /* nav row */
+  .nav-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .next-btn {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    background: var(--accent, #43a047);
+    cursor: pointer;
+    display: none;
+    transition: filter 0.15s;
+  }
+  .next-btn:hover { filter: brightness(1.1); }
+  .next-btn.show { display: block; }
+
+  .exit-btn {
+    padding: 14px 18px;
+    border: 2px solid var(--red-br);
+    border-radius: 12px;
+    background: var(--red-bg);
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--red-tx);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .exit-btn:hover {
+    background: var(--red-hbg);
+    border-color: var(--red-hbr);
+    color: var(--red-htx);
+  }
+
+  /* stats bar */
+  .stats-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .stat-pill {
+    flex: 1;
+    background: var(--card);
+    border-radius: 10px;
+    padding: 8px 6px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .stat-pill .val { font-size: 18px; font-weight: 900; color: var(--text); }
+  .stat-pill .lbl { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── END SCREEN ── */
+  #end { width: 100%; max-width: 480px; display: none; }
+
+  .end-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .trophy { font-size: 64px; margin-bottom: 8px; }
+
+  .stars-row { display: flex; justify-content: center; gap: 6px; margin: 12px 0; }
+  .star {
+    font-size: 28px;
+    opacity: 0;
+    transform: scale(0.3);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .star.pop { opacity: 1; transform: scale(1); }
+
+  .end-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 26px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .end-sub { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
+
+  .score-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .score-pill {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 10px 16px;
+    text-align: center;
+    min-width: 90px;
+  }
+  .score-pill .sp-val { font-size: 22px; font-weight: 900; }
+  .score-pill .sp-lbl { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; }
+
+  .end-btns { display: flex; flex-direction: column; gap: 10px; }
+  .try-again-btn {
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    background: var(--accent, #43a047);
+    cursor: pointer;
+    transition: filter 0.15s;
+  }
+  .try-again-btn:hover { filter: brightness(1.1); }
+
+  .menu-btn {
+    padding: 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .menu-btn:hover { border-color: #9ca3af; }
+
+  /* encourage screen */
+  .encourage-icon { font-size: 56px; margin-bottom: 8px; }
+
+  /* review box */
+  .review-box {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .review-box-lock { font-size: 28px; margin-bottom: 6px; }
+  .review-box-header {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .review-box-question {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .review-box p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .review-btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: #1a1a2e;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: filter 0.15s;
+    text-decoration: none;
+  }
+  .review-btn:hover { filter: brightness(1.2); }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ MENU ═══════════════════════════ -->
+<div id="menu">
+  <p class="brand">Agarutan Print</p>
+  <h1 class="menu-title">Master English Grammar:<br>Past Tense Quiz</h1>
+  <p class="menu-sub">Choose a section to begin • Questions shuffle every time</p>
+
+  <button class="section-btn btn-ch1" onclick="startQuiz('ch1')">
+    <span class="btn-label">Chapter 1</span>
+    The Simple Past Tense
+    <span class="btn-count">15 questions</span>
+  </button>
+
+  <button class="section-btn btn-ch2" onclick="startQuiz('ch2')">
+    <span class="btn-label">Chapter 2</span>
+    The Past Continuous Tense
+    <span class="btn-count">15 questions</span>
+  </button>
+
+  <button class="section-btn btn-mastery" onclick="startQuiz('mastery')">
+    <span class="btn-label">Final Challenge</span>
+    🏆 Mastery Test
+    <span class="btn-count">15 questions</span>
+  </button>
+
+  <p class="menu-footer">10 pts per correct answer &nbsp;·&nbsp; 5 pts if hint used</p>
+</div>
+
+<!-- ═══════════════════════════ QUIZ ═══════════════════════════ -->
+<div id="quiz">
+  <div class="stats-bar">
+    <div class="stat-pill"><div class="val" id="st-pts">0</div><div class="lbl">Points</div></div>
+    <div class="stat-pill"><div class="val" id="st-cor">0</div><div class="lbl">✅ Correct</div></div>
+    <div class="stat-pill"><div class="val" id="st-wrg">0</div><div class="lbl">❌ Wrong</div></div>
+    <div class="stat-pill"><div class="val" id="st-pct">0%</div><div class="lbl">🎯 Score</div></div>
+  </div>
+
+  <div class="quiz-header">
+    <span class="quiz-section-label" id="section-label"></span>
+    <span class="progress-pill" id="progress-pill"></span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+
+  <div class="card">
+    <div class="question-num" id="q-num"></div>
+    <div class="question-text" id="q-text"></div>
+    <div class="options" id="options"></div>
+    <div class="hint-area">
+      <button class="hint-btn" id="hint-btn" onclick="showHint()">💡 Show Hint</button>
+      <div class="hint-text" id="hint-text"></div>
+    </div>
+    <div class="feedback-box" id="feedback"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="exit-btn" onclick="exitToMenu()">Exit</button>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ END ═══════════════════════════ -->
+<div id="end"></div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// QUESTION BANK
+// ─────────────────────────────────────────────────────────────
+const QUESTIONS = {
+
+ch1: [
+  {
+    q: "Which sentence uses the Simple Past Tense correctly?",
+    options: ["She go to the store yesterday.", "She went to the store yesterday.", "She goes to the store yesterday.", "She going to the store yesterday."],
+    answer: "She went to the store yesterday.",
+    hint: "Simple Past of 'go' is 'went' — an irregular verb."
+  },
+  {
+    q: "Choose the correct past tense: He ______ football yesterday.",
+    options: ["plays", "played", "play", "playing"],
+    answer: "played",
+    hint: "Regular verbs add -ed in Simple Past."
+  },
+  {
+    q: "Which is the correct Simple Past form of 'eat'?",
+    options: ["eated", "eats", "ate", "eating"],
+    answer: "ate",
+    hint: "'eat' is an irregular verb. eat → ate."
+  },
+  {
+    q: "She ______ a cake for the party. (make)",
+    options: ["maked", "makes", "made", "making"],
+    answer: "made",
+    hint: "'make' is irregular. make → made."
+  },
+  {
+    q: "True or False: 'We dance at the party last night.' is correct.",
+    options: ["True", "False — it should be 'We danced'", "False — it should be 'We were dancing'", "False — it should be 'We did dance'"],
+    answer: "False — it should be 'We danced'",
+    hint: "Simple Past of 'dance' is 'danced' (verb ends in -e, just add -d)."
+  },
+  {
+    q: "What is the correct way to make a question in Simple Past?",
+    options: ["She played football?", "Did she play football?", "Did she played football?", "Does she play football?"],
+    answer: "Did she play football?",
+    hint: "Use 'did' + subject + base form of the verb for questions."
+  },
+  {
+    q: "How do you make 'cry' into Simple Past?",
+    options: ["cryed", "cried", "cryes", "crying"],
+    answer: "cried",
+    hint: "Consonant + y → change y to i, then add -ed: cry → cried."
+  },
+  {
+    q: "Which sentence is a correct negative in Simple Past?",
+    options: ["She didn't visited the zoo.", "She didn't visit the zoo.", "She not visited the zoo.", "She doesn't visit the zoo."],
+    answer: "She didn't visit the zoo.",
+    hint: "Use 'didn't' + base form of the verb."
+  },
+  {
+    q: "What is the Simple Past of 'stop'?",
+    options: ["stoped", "stopped", "stops", "stopping"],
+    answer: "stopped",
+    hint: "Short verb ending in single vowel + consonant: double the consonant and add -ed."
+  },
+  {
+    q: "Fix this sentence: 'He didn't played football yesterday.'",
+    options: ["He didn't played football yesterday.", "He didn't plays football yesterday.", "He didn't play football yesterday.", "He not played football yesterday."],
+    answer: "He didn't play football yesterday.",
+    hint: "After 'didn't', use the base form — never add -ed."
+  },
+  {
+    q: "Which time word fits Simple Past? 'I saw a movie ______ .'",
+    options: ["tomorrow", "right now", "two days ago", "next week"],
+    answer: "two days ago",
+    hint: "Simple Past needs past time words: yesterday, last week, ago, in 2020…"
+  },
+  {
+    q: "What is the correct short answer to: 'Did they play football?'",
+    options: ["Yes, they play.", "Yes, they played.", "Yes, they did.", "Yes, they do."],
+    answer: "Yes, they did.",
+    hint: "Short answers use 'Yes, they did' or 'No, they didn't'."
+  },
+  {
+    q: "Which sentence describes a past habit?",
+    options: ["She visits her grandmother tomorrow.", "She always walked to school when she was a child.", "She is walking to school now.", "She will walk to school next year."],
+    answer: "She always walked to school when she was a child.",
+    hint: "Past habits describe repeated actions in the past that no longer happen."
+  },
+  {
+    q: "The verb 'run' in Simple Past is ______.",
+    options: ["runned", "runs", "ran", "running"],
+    answer: "ran",
+    hint: "'run' is irregular. run → ran."
+  },
+  {
+    q: "Which is the correct sequence of events using Simple Past?",
+    options: ["He woke up, brushes his teeth and leaves for school.", "He woke up, brushed his teeth and left for school.", "He wakes up, brushed his teeth and left for school.", "He woke up, brushing his teeth and left for school."],
+    answer: "He woke up, brushed his teeth and left for school.",
+    hint: "All verbs in a past sequence should be in Simple Past."
+  }
+],
+
+ch2: [
+  {
+    q: "What is the Past Continuous Tense used for?",
+    options: ["Actions completed long ago", "Actions that were ongoing at a specific past time", "Future plans made in the past", "Habits in the present"],
+    answer: "Actions that were ongoing at a specific past time",
+    hint: "Past Continuous = was/were + verb-ing, describing an ongoing action in the past."
+  },
+  {
+    q: "Choose the correct Past Continuous form: She ______ a book at 8 PM.",
+    options: ["reads", "read", "was reading", "were reading"],
+    answer: "was reading",
+    hint: "She is singular → use 'was' + verb-ing."
+  },
+  {
+    q: "Which sentence is correct Past Continuous?",
+    options: ["They was playing soccer.", "They were playing soccer.", "They playing soccer.", "They be playing soccer."],
+    answer: "They were playing soccer.",
+    hint: "Plural subject (They) → 'were' + verb-ing."
+  },
+  {
+    q: "True or False: 'He were reading a book when I arrived.' is correct.",
+    options: ["True", "False — it should be 'He was reading'", "False — it should be 'He reading'", "False — it should be 'He did read'"],
+    answer: "False — it should be 'He was reading'",
+    hint: "He is singular → use 'was', not 'were'."
+  },
+  {
+    q: "Which word connects a Past Continuous action with an interrupting Simple Past action?",
+    options: ["because", "when", "although", "until"],
+    answer: "when",
+    hint: "Example: 'I was studying when the phone rang.' The interruption uses 'when'."
+  },
+  {
+    q: "I was watching TV ______ the phone rang.",
+    options: ["while", "when", "until", "because"],
+    answer: "when",
+    hint: "'When' introduces the shorter interrupting action in Simple Past."
+  },
+  {
+    q: "Which shows two simultaneous past actions correctly?",
+    options: ["She was reading while he was writing.", "She read while he wrote.", "She reading while he writing.", "She did read while he did write."],
+    answer: "She was reading while he was writing.",
+    hint: "Two ongoing past actions happening at the same time → both in Past Continuous, joined by 'while'."
+  },
+  {
+    q: "How do you spell the -ing form of 'run'?",
+    options: ["runing", "runned", "running", "runs"],
+    answer: "running",
+    hint: "Short verb (single vowel + consonant) → double the consonant before -ing."
+  },
+  {
+    q: "What is the -ing form of 'write'?",
+    options: ["writeing", "writting", "writing", "writes"],
+    answer: "writing",
+    hint: "Verb ends in -e → drop the e and add -ing."
+  },
+  {
+    q: "Fix this sentence: 'The children was not playing in the garden.'",
+    options: ["The children was not playing in the garden.", "The children were not playing in the garden.", "The children weren't played in the garden.", "The children did not playing in the garden."],
+    answer: "The children were not playing in the garden.",
+    hint: "Plural subject (The children) → 'were', not 'was'."
+  },
+  {
+    q: "Choose the correct question: (She / reading a book / library)",
+    options: ["Did she reading a book in the library?", "Was she reading a book in the library?", "Were she reading a book in the library?", "Is she reading a book in the library?"],
+    answer: "Was she reading a book in the library?",
+    hint: "Past Continuous question: Was/Were + subject + verb-ing."
+  },
+  {
+    q: "What is the correct short answer to: 'Was she reading a book?'",
+    options: ["Yes, she read.", "Yes, she was.", "Yes, she did.", "Yes, she is."],
+    answer: "Yes, she was.",
+    hint: "Short answer for Past Continuous: Yes, she was / No, she wasn't."
+  },
+  {
+    q: "Which sentence correctly uses 'while'?",
+    options: ["She was drawing while her brother played video games.", "She was drawing while her brother playing video games.", "She drawing while her brother was playing video games.", "She was drawing while her brother was playing video games."],
+    answer: "She was drawing while her brother was playing video games.",
+    hint: "'While' links two simultaneous past continuous actions."
+  },
+  {
+    q: "The -ing form of 'lie' is ______.",
+    options: ["lieing", "liying", "lying", "lied"],
+    answer: "lying",
+    hint: "Verbs ending in -ie → change -ie to -y, then add -ing: lie → lying."
+  },
+  {
+    q: "Which sentence uses Past Continuous for an interrupted action?",
+    options: ["I studied when the phone rang.", "I was studying when the phone rang.", "I study when the phone rang.", "I had studied when the phone rang."],
+    answer: "I was studying when the phone rang.",
+    hint: "Ongoing action (was studying) interrupted by a completed action (rang)."
+  }
+],
+
+mastery: [
+  {
+    q: "Complete: They ______ to London last year. (travel)",
+    options: ["traveled", "were traveling", "travels", "traveling"],
+    answer: "traveled",
+    hint: "Single completed past action → Simple Past."
+  },
+  {
+    q: "Complete: While I ______ a book, my phone ______. (read / ring)",
+    options: ["was reading / rang", "read / was ringing", "was reading / was ringing", "read / rang"],
+    answer: "was reading / rang",
+    hint: "Ongoing action (Past Continuous) interrupted by a quick action (Simple Past)."
+  },
+  {
+    q: "Fix this sentence: 'She wasn't play the piano when her teacher called.'",
+    options: ["She wasn't play the piano when her teacher called.", "She wasn't playing the piano when her teacher called.", "She didn't playing the piano when her teacher called.", "She wasn't played the piano when her teacher called."],
+    answer: "She wasn't playing the piano when her teacher called.",
+    hint: "Negative Past Continuous: wasn't + verb-ing."
+  },
+  {
+    q: "Fix this sentence: 'They didn't goes to the park yesterday.'",
+    options: ["They didn't goes to the park yesterday.", "They didn't going to the park yesterday.", "They didn't go to the park yesterday.", "They weren't go to the park yesterday."],
+    answer: "They didn't go to the park yesterday.",
+    hint: "After 'didn't', always use the base form of the verb."
+  },
+  {
+    q: "True or False: 'He didn't ate breakfast this morning.' is correct.",
+    options: ["True", "False — it should be 'He didn't eat'", "False — it should be 'He wasn't eating'", "False — it should be 'He hadn't eaten'"],
+    answer: "False — it should be 'He didn't eat'",
+    hint: "'didn't' is already past — the verb stays in base form."
+  },
+  {
+    q: "Choose the correct multiple-choice answer: She ______ all night for the exam.",
+    options: ["studies", "study", "studied", "was study"],
+    answer: "studied",
+    hint: "Simple Past of 'study': consonant + y → change y to i + ed = studied."
+  },
+  {
+    q: "Complete: He was watching TV when his friends ______. (arrive)",
+    options: ["were arriving", "arrived", "arrives", "had arrived"],
+    answer: "arrived",
+    hint: "The interrupting action uses Simple Past."
+  },
+  {
+    q: "Which is correct? 'We ______ a movie at the theater last night.'",
+    options: ["see", "seen", "saw", "seeing"],
+    answer: "saw",
+    hint: "'see' is irregular. see → saw."
+  },
+  {
+    q: "True or False: 'They was watching a movie last night.' is correct.",
+    options: ["True", "False — it should be 'They were watching'", "False — it should be 'They did watch'", "False — it should be 'They watched'"],
+    answer: "False — it should be 'They were watching'",
+    hint: "Plural subject 'They' requires 'were', not 'was'."
+  },
+  {
+    q: "Turn into a question: 'They visited the museum last weekend.'",
+    options: ["Did they visit the museum last weekend?", "Were they visiting the museum last weekend?", "Did they visited the museum last weekend?", "Have they visited the museum last weekend?"],
+    answer: "Did they visit the museum last weekend?",
+    hint: "Simple Past question: Did + subject + base form?"
+  },
+  {
+    q: "Make negative: 'She was reading a book when her friend arrived.'",
+    options: ["She wasn't reading a book when her friend arrived.", "She didn't reading a book when her friend arrived.", "She wasn't read a book when her friend arrived.", "She didn't was reading a book when her friend arrived."],
+    answer: "She wasn't reading a book when her friend arrived.",
+    hint: "Negative Past Continuous: wasn't/weren't + verb-ing."
+  },
+  {
+    q: "Fix: 'While I watch TV, the doorbell was ringing.'",
+    options: ["While I watched TV, the doorbell was ringing.", "While I was watching TV, the doorbell rang.", "While I was watching TV, the doorbell was ringing.", "While I watched TV, the doorbell rang."],
+    answer: "While I was watching TV, the doorbell rang.",
+    hint: "Ongoing action = Past Continuous; interruption = Simple Past."
+  },
+  {
+    q: "He ______ the ball during the game. (catch)",
+    options: ["catches", "catched", "caught", "catching"],
+    answer: "caught",
+    hint: "'catch' is irregular. catch → caught."
+  },
+  {
+    q: "Short answer for: 'Were they playing soccer when it started to rain?'",
+    options: ["Yes, they played.", "Yes, they did.", "Yes, they were.", "Yes, they are."],
+    answer: "Yes, they were.",
+    hint: "Past Continuous short answer: Yes, they were / No, they weren't."
+  },
+  {
+    q: "Which sentence correctly combines Simple Past and Past Continuous?",
+    options: [
+      "I was taking a shower while my brother brushed his teeth.",
+      "I took a shower while my brother was brush his teeth.",
+      "I was taking a shower while my brother was brushed his teeth.",
+      "I taking a shower while my brother brushed his teeth."
+    ],
+    answer: "I was taking a shower while my brother brushed his teeth.",
+    hint: "One person doing ongoing action (Past Continuous) while another completes something (Simple Past)."
+  }
+]
+
+}; // end QUESTIONS
+
+// ─────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────
+let currentSection = '';
+let questions = [];
+let qIndex = 0;
+let points = 0;
+let correct = 0;
+let wrong = 0;
+let hintUsed = false;
+let answered = false;
+
+const ACCENT_COLORS = {
+  ch1: '#43a047',
+  ch2: '#1e88e5',
+  mastery: '#7b1fa2'
+};
+
+const SECTION_LABELS = {
+  ch1: 'Chapter 1 · Simple Past Tense',
+  ch2: 'Chapter 2 · Past Continuous Tense',
+  mastery: '🏆 Mastery Test'
+};
+
+// ─────────────────────────────────────────────────────────────
+// UTILS
+// ─────────────────────────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getSrcParam() {
+  const p = new URLSearchParams(window.location.search);
+  return p.get('src') || '';
+}
+
+function setAccent(color) {
+  document.documentElement.style.setProperty('--accent', color);
+}
+
+// ─────────────────────────────────────────────────────────────
+// MENU → QUIZ
+// ─────────────────────────────────────────────────────────────
+function startQuiz(section) {
+  currentSection = section;
+  questions = shuffle(QUESTIONS[section]);
+  qIndex = 0; points = 0; correct = 0; wrong = 0;
+  setAccent(ACCENT_COLORS[section]);
+
+  document.getElementById('menu').style.display = 'none';
+  document.getElementById('end').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+
+  updateStats();
+  renderQuestion();
+}
+
+// ─────────────────────────────────────────────────────────────
+// RENDER QUESTION
+// ─────────────────────────────────────────────────────────────
+function renderQuestion() {
+  hintUsed = false;
+  answered = false;
+
+  const q = questions[qIndex];
+  const total = questions.length;
+
+  document.getElementById('section-label').textContent = SECTION_LABELS[currentSection];
+  document.getElementById('progress-pill').textContent = (qIndex + 1) + ' / ' + total;
+  document.getElementById('progress-fill').style.width = ((qIndex / total) * 100) + '%';
+
+  document.getElementById('q-num').textContent = 'Question ' + (qIndex + 1);
+  document.getElementById('q-text').textContent = q.q;
+
+  // Shuffle options
+  const shuffledOpts = shuffle(q.options);
+
+  const optionsEl = document.getElementById('options');
+  optionsEl.innerHTML = '';
+  shuffledOpts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt;
+    btn.onclick = () => selectAnswer(opt, q.answer);
+    optionsEl.appendChild(btn);
+  });
+
+  // hint
+  document.getElementById('hint-btn').style.display = 'inline-block';
+  document.getElementById('hint-text').className = 'hint-text';
+  document.getElementById('hint-text').textContent = q.hint;
+
+  // feedback
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback-box';
+  fb.textContent = '';
+
+  // next button
+  const nb = document.getElementById('next-btn');
+  nb.className = 'next-btn';
+  nb.textContent = qIndex < questions.length - 1 ? 'Next →' : 'See Results';
+}
+
+// ─────────────────────────────────────────────────────────────
+// ANSWER SELECTION
+// ─────────────────────────────────────────────────────────────
+function selectAnswer(chosen, correctAnswer) {
+  if (answered) return;
+  answered = true;
+
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correctAnswer) btn.classList.add('revealed');
+  });
+
+  const fb = document.getElementById('feedback');
+  const isCorrect = chosen === correctAnswer;
+
+  if (isCorrect) {
+    const pts = hintUsed ? 5 : 10;
+    points += pts;
+    correct++;
+    buttons.forEach(btn => { if (btn.textContent === chosen) btn.classList.add('correct'); });
+    fb.className = 'feedback-box correct-fb show';
+    fb.textContent = hintUsed ? '✅ Correct! (+5 pts — hint used)' : '✅ Correct! (+10 pts)';
+  } else {
+    wrong++;
+    buttons.forEach(btn => { if (btn.textContent === chosen) btn.classList.add('wrong'); });
+    fb.className = 'feedback-box wrong-fb show';
+    fb.textContent = '❌ The correct answer is: ' + correctAnswer;
+  }
+
+  document.getElementById('hint-btn').style.display = 'none';
+  document.getElementById('next-btn').classList.add('show');
+  updateStats();
+}
+
+// ─────────────────────────────────────────────────────────────
+// HINT
+// ─────────────────────────────────────────────────────────────
+function showHint() {
+  if (answered) return;
+  hintUsed = true;
+  document.getElementById('hint-text').classList.add('show');
+  document.getElementById('hint-btn').style.display = 'none';
+}
+
+// ─────────────────────────────────────────────────────────────
+// STATS
+// ─────────────────────────────────────────────────────────────
+function updateStats() {
+  document.getElementById('st-pts').textContent = points;
+  document.getElementById('st-cor').textContent = correct;
+  document.getElementById('st-wrg').textContent = wrong;
+  const done = correct + wrong;
+  const pct = done > 0 ? Math.round((correct / done) * 100) : 0;
+  document.getElementById('st-pct').textContent = pct + '%';
+}
+
+// ─────────────────────────────────────────────────────────────
+// NEXT QUESTION
+// ─────────────────────────────────────────────────────────────
+function nextQuestion() {
+  qIndex++;
+  if (qIndex < questions.length) {
+    renderQuestion();
+  } else {
+    showEndScreen();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// END SCREEN
+// ─────────────────────────────────────────────────────────────
+function showEndScreen() {
+  document.getElementById('quiz').style.display = 'none';
+  const endEl = document.getElementById('end');
+  endEl.style.display = 'block';
+  endEl.innerHTML = '';
+
+  const total = questions.length;
+  const pct = Math.round((correct / total) * 100);
+  const passed = pct >= 70;
+  const src = getSrcParam();
+  const isMastery = currentSection === 'mastery';
+  const accent = ACCENT_COLORS[currentSection];
+
+  // Main end card
+  const card = document.createElement('div');
+  card.className = 'end-card';
+
+  if (passed) {
+    // Trophy + stars
+    card.innerHTML += '<div class="trophy">🏆</div>';
+    card.innerHTML += '<div class="stars-row" id="stars-row">' +
+      '<span class="star" id="s0">⭐</span>' +
+      '<span class="star" id="s1">⭐</span>' +
+      '<span class="star" id="s2">⭐</span>' +
+      '<span class="star" id="s3">⭐</span>' +
+      '<span class="star" id="s4">⭐</span>' +
+      '</div>';
+
+    let title = '';
+    if (pct === 100) title = '🏆 Spectacular!';
+    else if (pct >= 85) title = '⭐ Excellent!';
+    else title = '🌟 Great Job!';
+
+    card.innerHTML += '<div class="end-title">' + title + '</div>';
+    card.innerHTML += '<div class="end-sub">You scored ' + pct + '% — well done!</div>';
+  } else {
+    card.innerHTML += '<div class="encourage-icon">📚</div>';
+    card.innerHTML += '<div class="end-title">Keep Practicing!</div>';
+    card.innerHTML += '<div class="end-sub">You scored ' + pct + '%. Review the chapter and try again — you\'ve got this!</div>';
+  }
+
+  // Score pills
+  card.innerHTML += '<div class="score-pills">' +
+    '<div class="score-pill"><div class="sp-val">' + points + '</div><div class="sp-lbl">Points</div></div>' +
+    '<div class="score-pill"><div class="sp-val">' + correct + '</div><div class="sp-lbl">✅ Correct</div></div>' +
+    '<div class="score-pill"><div class="sp-val">' + wrong + '</div><div class="sp-lbl">❌ Wrong</div></div>' +
+    '<div class="score-pill"><div class="sp-val">' + pct + '%</div><div class="sp-lbl">🎯 Score</div></div>' +
+    '</div>';
+
+  // Buttons
+  card.innerHTML += '<div class="end-btns">' +
+    '<button class="try-again-btn" style="background:' + accent + '" onclick="startQuiz(\'' + currentSection + '\')">🔄 Try Again</button>' +
+    '<button class="menu-btn" onclick="exitToMenu()">← Back to Menu</button>' +
+    '</div>';
+
+  endEl.appendChild(card);
+
+  // Review box — ONLY on mastery, ONLY if passed, ONLY if src param
+  if (isMastery && passed && src) {
+    const rb = document.createElement('div');
+    rb.className = 'review-box';
+
+    rb.innerHTML = '<div class="review-box-lock">🔒</div>' +
+      '<div class="review-box-header">Notice: For Parents &amp; Educators</div>' +
+      '<div class="review-box-question">How did you like this complete resource bundle?</div>' +
+      '<p>Thank you for choosing Agarutan Print! We hope this combination of printable worksheets, the digital fillable PDF, and the interactive quiz bonus is helping to build your student\'s skills.</p>' +
+      '<p>If this comprehensive resource bundle added value to your student\'s learning experience, please take a brief moment to share your feedback. Your review helps us continue creating high-quality learning assets!</p>';
+
+    if (src === 'etsy') {
+      rb.innerHTML += '<a class="review-btn" href="https://www.etsy.com/your/purchases" target="_blank" rel="noopener">⭐ Leave a Review on Etsy</a>';
+    } else if (src === 'amazon') {
+      rb.innerHTML += '<a class="review-btn" href="https://www.amazon.com/review/create-review?asin=B0DRSRJ27F" target="_blank" rel="noopener">⭐ Review Paperback on Amazon</a>';
+      rb.innerHTML += '<a class="review-btn" href="https://www.amazon.com/review/create-review?asin=B0F7FF49BN" target="_blank" rel="noopener">⭐ Review Hardcover on Amazon</a>';
+    }
+
+    endEl.appendChild(rb);
+  }
+
+  // Animate stars
+  if (passed) {
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        const s = document.getElementById('s' + i);
+        if (s) s.classList.add('pop');
+      }, 200 + i * 180);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// EXIT
+// ─────────────────────────────────────────────────────────────
+function exitToMenu() {
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('end').style.display = 'none';
+  document.getElementById('menu').style.display = 'block';
+  setAccent('#43a047');
+}
+</script>
+</body>
+</html>
